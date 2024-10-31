@@ -1,18 +1,23 @@
-class Solution(object):
-    def findPeakElement(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
         if len(nums)==1:
             return 0
-        
-        if nums[0]>nums[1]:
+        if len(nums)==2 and nums[0]<nums[1]:
+            return 1
+        elif len(nums)==2 and nums[0]>nums[1]:
             return 0
-        
-        if nums[len(nums)-1]>nums[len(nums)-2]:
-            return len(nums)-1
+        else:
+            if nums[0]>nums[1]:
+                return 0
+            elif nums[-1]>nums[-2]:
+                return len(nums)-1
+            else:
             
-        for i in range(1,len(nums)-1):
-            if nums[i]>nums[i-1] and nums[i]>nums[i+1]:
-                return i
+        
+                for i in range(1,len(nums)-1):
+                    if nums[i]>nums[i+1] and nums[i-1]<nums[i]:
+                        return i
+        
+        
+            
+        
